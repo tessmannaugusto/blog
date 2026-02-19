@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { fetchPosts } from "../services/api"
 import type { Post } from "../types/post";
+import { PostCard } from "../components/PostCard";
 
 
 export default function Home () {
@@ -19,8 +20,8 @@ export default function Home () {
     <>
     <div>
       <ul>
-        {posts.map((p, index) => (
-          <li key={index}>{p.title}</li>
+        {posts.map(post => (
+          <PostCard key={post.id} post={post} />
         ))}
       </ul>
     </div>
