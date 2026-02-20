@@ -2,8 +2,14 @@ import { Request, Response } from "express";
 import { getAllPosts, createPost, deletePost } from "../services/posts.js";
 
 async function getAll(req: Request, res: Response) {
-  const posts = await getAllPosts();
-  return res.json(posts);
+  try {
+    const posts = await getAllPosts();
+    return res.status(200).json(posts);
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: "could not get posts." })
+  }
+
 }
 
 async function create(req: Request, res: Response) {

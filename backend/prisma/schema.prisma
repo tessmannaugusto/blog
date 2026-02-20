@@ -14,3 +14,10 @@ model Post {
   slug      String   @unique
   createdAt DateTime @default(now())
 }
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name     String
+  message   String
+  email   String @unique
+  createdAt DateTime @default(now())
+}
