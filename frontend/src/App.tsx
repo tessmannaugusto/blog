@@ -2,6 +2,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/home'
 import Nav from './components/nav'
+import Contact from './pages/contact'
+import Login from './pages/login'
 
 function App() {
 
@@ -11,7 +13,9 @@ function App() {
         <Nav></Nav>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/contact' element={<div>Contato</div>}/>
+          <Route path='/contact' element={<Contact/>}/>
+          <Route path='/login' element={<Login/>}/>
+          {/* <Route path='/admin' element={<Admin/>}/> */}
         </Routes>
       </BrowserRouter>
     </>
