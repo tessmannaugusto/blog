@@ -4,6 +4,7 @@ import Home from './pages/home'
 import Nav from './components/nav'
 import Contact from './pages/contact'
 import Login from './pages/login'
+import Admin from './pages/admin'
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/login' element={<Login/>}/>
-          {/* <Route path='/admin' element={<Admin/>}/> */}
+          <Route path='/admin' element={<Admin/>}/>
         </Routes>
       </BrowserRouter>
     </>

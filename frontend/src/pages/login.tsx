@@ -23,7 +23,6 @@ export default function Login () {
     }
   }
 
-
   return (
     <form onSubmit={handleLogin}>
       <label htmlFor="email">Email:</label>
