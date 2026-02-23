@@ -1,5 +1,5 @@
 import { prisma } from '../lib/db.js'
-import { CreatePostInput } from '../schemas/post.schema.js';
+import { CreatePostInput, PostSchema } from '../schemas/post.schema.js';
 
 
 
@@ -14,8 +14,11 @@ async function createPost(newPost: CreatePostInput) {
   });
 }
 
-async function editPost() {
-  return prisma.post.findMany();
+async function editPost(post: PostSchema) {
+  return prisma.post.update({
+    where: { id: post.id},
+    data: post
+  })
 }
 
 async function deletePost(id: number) {

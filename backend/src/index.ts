@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import postsRoute from "./routes/posts.js"
 import contactRoute from "./routes/contact.js"
+import authRoute from "./routes/auth.js"
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/posts', postsRoute);
 app.use('/contact', contactRoute);
+app.use('/auth', authRoute);
 
 app.listen(process.env.PORT, () => {
   console.info(`server running on port: ${process.env.PORT}`)

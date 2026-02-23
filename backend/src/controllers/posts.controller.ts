@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllPosts, createPost, deletePost } from "../services/posts.js";
+import { getAllPosts, createPost, deletePost, editPost } from "../services/posts.js";
 
 async function getAll(req: Request, res: Response) {
   try {
@@ -21,9 +21,17 @@ async function create(req: Request, res: Response) {
     res.status(500).json({ message: "could not create post." })
   }
 }
-async function edit(req: Request, res: Response) {
 
+async function edit(req: Request, res: Response) {
+  console.log("edit post route")
+  try {
+    await editPost(req.body);
+    res.status(200).json({ message: "post updated." })
+  } catch (error) {
+    res.status(500).json({ message: "could not update post." })
+  }
 }
+
 async function deleteOne(req: Request<{ id: string }>, res: Response) {
   try {
     const id = parseInt(req.params.id)
