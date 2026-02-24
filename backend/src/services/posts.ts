@@ -5,7 +5,9 @@ import { CreatePostInput, PostSchema } from '../schemas/post.schema.js';
 
 async function getAllPosts() {
   console.info("getting all posts from db...")
-  return prisma.post.findMany();
+  return prisma.post.findMany({
+    orderBy: {createdAt: "desc"}
+  });
 }
 
 async function createPost(newPost: CreatePostInput) {
