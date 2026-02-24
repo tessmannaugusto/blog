@@ -64,7 +64,7 @@ async function login(loginData: LoginData): Promise<LoginResponse> {
   return response.json();
 }
 
-async function getContacts(): Promise<Contact[]> {
+async function fetchContacts(): Promise<Contact[]> {
   const response = await fetch(`${URL}/contact`, {
     method: "GET",
     headers: getAuthHeaders()
@@ -83,4 +83,4 @@ async function createContact (contact: CreateContact): Promise<CreateEditDeleteR
     return response.json()
 }
 
-export { fetchPosts, createPost, updatePost, deletePost, login, getContacts, createContact }
+export { fetchPosts, createPost, updatePost, deletePost, login, fetchContacts, createContact }
