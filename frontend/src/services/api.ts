@@ -1,12 +1,13 @@
 import type { Contact, CreateContact } from "../types/contact";
 import type { LoginData, LoginResponse } from "../types/login";
-import type { CreatePost, Post } from "../types/post";
+import type { CreatePost, FetchPostsResponse, Post } from "../types/post";
 
 const URL = "http://localhost:3000"
 
-interface CreateEditDeleteResponse {
+type CreateEditDeleteResponse = {
   message: string
 }
+
 
 function getAuthHeaders() {
   const token = localStorage.getItem('blog_token');
@@ -16,8 +17,8 @@ function getAuthHeaders() {
   }
 }
 
-async function fetchPosts(): Promise<Post[]> {
-  const response = await fetch(`${URL}/posts`);
+async function fetchPosts(page: number = 1, limit: number = 5): Promise<FetchPostsResponse> {
+  const response = await fetch(`${URL}/posts?page=${page}&limit=${limit}`);
   if (!response.ok) throw new Error('Error when fetching posts.')
   return response.json();
 }
