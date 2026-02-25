@@ -3,7 +3,9 @@ import { getAllPosts, createPost, deletePost, editPost } from "../services/posts
 
 async function getAll(req: Request, res: Response) {
   try {
-    const posts = await getAllPosts();
+    const page = parseInt(req.query.page as string) || 1
+    const limit = parseInt(req.query.limit as string) || 5
+    const posts = await getAllPosts(page, limit);
     return res.status(200).json(posts);
   } catch (error) {
     console.error(error)

@@ -18,6 +18,12 @@ export const deletePostSchema = z.object({
   id: z.string().regex(/^\d+$/).transform(Number)
 })
 
-export type PostSchema = z.infer<typeof postSchema>
+export const getPostsSchema = z.object({
+  page: z.string().regex(/^\d+$/).transform(Number),
+  limit: z.string().regex(/^\d+$/).transform(Number)
+})
+
+export type Post = z.infer<typeof postSchema>
 export type CreatePostInput = z.infer<typeof createPostSchema>
 export type DeletePostInput = z.infer<typeof deletePostSchema>
+export type GetPostsInput = z.infer<typeof getPostsSchema>

@@ -1,13 +1,29 @@
 import { prisma } from '../lib/db.js'
-import { CreatePostInput, PostSchema } from '../schemas/post.schema.js';
+import { CreatePostInput, Post } from '../schemas/post.schema.js';
 
 
 
-async function getAllPosts() {
+async function getAllPosts(page: number, limit: number) {
   console.info("getting all posts from db...")
-  return prisma.post.findMany({
-    orderBy: {createdAt: "desc"}
-  });
+  const skip = (page - 1) * limit;
+
+  const [posts, total] = await Promise.all([
+    prisma.post.findMany({
+      orderBy: { createdAt: "desc" },
+      skip,
+      take: limit
+    }),
+    prisma.post.count()
+  ])
+  return {
+    posts,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit)
+    }
+  }
 }
 
 async function createPost(newPost: CreatePostInput) {
@@ -16,9 +32,9 @@ async function createPost(newPost: CreatePostInput) {
   });
 }
 
-async function editPost(post: PostSchema) {
+async function editPost(post: Post) {
   return prisma.post.update({
-    where: { id: post.id},
+    where: { id: post.id },
     data: post
   })
 }
