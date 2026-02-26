@@ -1,4 +1,4 @@
-import type { Contact, CreateContact } from "../types/contact";
+import type { Contact, CreateContact, FetchContactsResponse } from "../types/contact";
 import type { LoginData, LoginResponse } from "../types/login";
 import type { CreatePost, FetchPostsResponse, Post } from "../types/post";
 
@@ -21,6 +21,12 @@ async function fetchPosts(page: number = 1, limit: number = 5): Promise<FetchPos
   const response = await fetch(`${URL}/posts?page=${page}&limit=${limit}`);
   if (!response.ok) throw new Error('Error when fetching posts.')
   return response.json();
+}
+
+async function fetchPostBySlug(slug: string): Promise<Post> {
+  const response = await fetch(`${URL}/posts/${slug}`)
+  if(!response.ok) throw new Error('Error when getting post.')
+  return response.json()
 }
 
 async function createPost(post: CreatePost): Promise<CreateEditDeleteResponse> {
@@ -65,12 +71,18 @@ async function login(loginData: LoginData): Promise<LoginResponse> {
   return response.json();
 }
 
-async function fetchContacts(): Promise<Contact[]> {
-  const response = await fetch(`${URL}/contact`, {
+async function fetchContacts(): Promise<FetchContactsResponse> {
+  const response = await fetch(`${URL}/contacts`, {
     method: "GET",
     headers: getAuthHeaders()
   })
   if(!response.ok) throw new Error('Error when getting contacts.')
+  return response.json()
+}
+
+async function fetchContact(id: number): Promise<Contact> {
+  const response = await fetch(`${URL}/contacts/${id}`)
+  if(!response.ok) throw new Error('Error when getting contact.')
   return response.json()
 }
 
@@ -84,4 +96,4 @@ async function createContact (contact: CreateContact): Promise<CreateEditDeleteR
     return response.json()
 }
 
-export { fetchPosts, createPost, updatePost, deletePost, login, fetchContacts, createContact }
+export { fetchPosts, fetchPostBySlug, createPost, updatePost, deletePost, login, fetchContacts, createContact, fetchContact }

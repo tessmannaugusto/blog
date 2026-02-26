@@ -11,3 +11,13 @@ export interface CreateContact {
   message: string
   email: string
 }
+
+export type FetchContactsResponse = {
+  contacts: Contact[],
+  pagination: {
+    page: number,
+    limit: number,
+    total: number,
+    totalPages: number
+  }
+}

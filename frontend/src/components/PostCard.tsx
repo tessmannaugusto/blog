@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { Post } from "../types/post";
 
 interface PostCardProps {
@@ -12,7 +13,7 @@ export function PostCard ({post, showActions = false, onDelete}: PostCardProps) 
       <time>{new Date(post.createdAt).toLocaleDateString('pt-BR')}</time>
       <h2>{post.title}</h2>
       <p>{post.content.length > 150 ? post.content.substring(0, 150) + "..." : post.content}</p>
-      <a href={`/posts/${post.slug}`}>Ler mais →</a>
+      <Link to={`/posts/${post.slug}`}>Read more</Link>
       {showActions && onDelete && (
         <button onClick={() => onDelete(post.id)}>delete</button>
       )}

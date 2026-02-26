@@ -22,9 +22,9 @@ export default function Admin () {
   useEffect(()=>{
     const fetchData = async () => {
       const posts = await fetchPosts();
-      setPosts(posts);
+      setPosts(posts.posts);
       const contacts = await fetchContacts();
-      setContacts(contacts);
+      setContacts(contacts.contacts);
     };
     fetchData()
   }, [])
