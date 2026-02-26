@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllPosts, createPost, deletePost, editPost, getPost } from "../services/posts.js";
+import { getAllPosts, createPost, deletePost, editPost, getPostBySlug } from "../services/posts.js";
 
 async function getAll(req: Request, res: Response) {
   try {
@@ -13,17 +13,15 @@ async function getAll(req: Request, res: Response) {
   }
 }
 
-async function getOne(req: Request, res: Response) {
+async function getOneBySlug(req: Request, res: Response) {
   try {
-    const id = parseInt(req.params.id as string) || 1
-    const post = await getPost(id);
-    if (!post) {
-      return res.status(404).json({message: "post not found"})
-    }
+    const slug = req.params.slug as string
+    const post = await getPostBySlug(slug);
+    console.log('post', post)
     return res.status(200).json(post)
   } catch (error) {
     console.log(error);
-    return res.status(500).json("could not find post.")
+    return res.status(404).json("post not found.")
   }
 }
 
@@ -58,4 +56,4 @@ async function deleteOne(req: Request<{ id: string }>, res: Response) {
   }
 }
 
-export { getAll, create, edit, deleteOne, getOne }
+export { getAll, create, edit, deleteOne, getOneBySlug }

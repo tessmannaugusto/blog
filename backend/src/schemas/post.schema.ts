@@ -17,8 +17,9 @@ export const createPostSchema = z.object({
 export const deletePostSchema = z.object({
   id: z.string().regex(/^\d+$/).transform(Number)
 })
-export const getPostSchema = z.object({
-  id: z.string().regex(/^\d+$/).transform(Number)
+
+export const getPostBySlugSchema = z.object({
+  slug: z.string()
 })
 
 export const getPostsSchema = z.object({
