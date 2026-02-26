@@ -43,4 +43,10 @@ async function deletePost(id: number) {
   return prisma.post.delete({ where: { id: id } });
 }
 
-export { getAllPosts, createPost, deletePost, editPost }
+async function getPost(id: number) {
+  return prisma.post.findUnique({
+    where: {id}
+  })
+}
+
+export { getAllPosts, createPost, deletePost, editPost, getPost }

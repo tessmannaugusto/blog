@@ -6,5 +6,9 @@ export const createContactSchema = z.object({
   email: z.email()
 })
 
+export const getContactSchema = z.object({
+  id: z.string().regex(/^\d+$/).transform(Number)
+})
 
 export type CreateContactInput = z.infer<typeof createContactSchema>
+export type GetContactInput = z.infer<typeof getContactSchema>

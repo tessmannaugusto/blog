@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/posts', postsRoute);
-app.use('/contact', contactRoute);
+app.use('/contacts', contactRoute);
 app.use('/auth', authRoute);
 
 app.listen(process.env.PORT, () => {
