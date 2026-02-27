@@ -71,8 +71,8 @@ async function login(loginData: LoginData): Promise<LoginResponse> {
   return response.json();
 }
 
-async function fetchContacts(): Promise<FetchContactsResponse> {
-  const response = await fetch(`${URL}/contacts`, {
+async function fetchContacts(page: number = 1, limit: number = 5): Promise<FetchContactsResponse> {
+  const response = await fetch(`${URL}/contacts?page=${page}&limit=${limit}`, {
     method: "GET",
     headers: getAuthHeaders()
   })

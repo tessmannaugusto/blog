@@ -6,15 +6,10 @@ export default function PostForm () {
   const [content, setContent] = useState<string>('')
   const [status, setStatus] = useState<string>('')
 
-  // function generateSlug(title: string): void {
-  //   const generatedSlug = title.replace(/[^a-zA-Z0-9\\s]/gi, "").replaceAll(' ', '-').toLowerCase()
-  //   setSlug(generatedSlug)
-  // }
-
   async function handleSubmit(e: React.SubmitEvent){
     e.preventDefault();
     try {
-      const generatedSlug = title.replace(/[^a-zA-Z0-9\\s]/gi, "").replaceAll(' ', '-').toLowerCase()
+      const generatedSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
       await createPost({
         title,
         content,
