@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { getAllPosts, createPost, deletePost, editPost, getPostBySlug } from "../services/posts.js";
+import { Prisma } from "../../generated/prisma/client.js";
 
 async function getAll(req: Request, res: Response) {
   try {
@@ -27,9 +28,17 @@ async function getOneBySlug(req: Request, res: Response) {
 
 async function create(req: Request, res: Response) {
   try {
+    console.info("create post route")
     await createPost(req.body);
     return res.status(201).json({ message: "post created!" });
   } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        return res.status(409).json({
+          message: "Já existe um post com esse slug."
+        })
+      }
+    }
     console.error(error)
     return res.status(500).json({ message: "could not create post." })
   }

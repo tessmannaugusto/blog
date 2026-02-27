@@ -8,6 +8,7 @@ export function validate(schema: ZodObject, source: ValidateSource = "body") {
     const result = schema.safeParse(req[source]);
     
     if (!result.success) {
+      console.log("Error when validating schema:", result.error)
       return res.status(400).json({ errors: result.error })
     }
 

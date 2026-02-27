@@ -14,6 +14,5 @@ export function authenticate(req: Request, res: Response, next: NextFunction) {
     console.error(e)
     return res.status(403).json({ error: "Invalid token." })
   }
-  console.info("accessed authenticated route.")
   next()
 }
