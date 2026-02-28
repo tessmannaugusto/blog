@@ -6,10 +6,10 @@ interface ContactCardProps {
 
 export function ContactCard ({contact}: ContactCardProps) {
   return (
-    <article>
+    <article className="contact-card">
       <time>{new Date(contact.createdAt).toLocaleDateString('pt-BR')}</time>
       <h2>Message sent by: {contact.name}</h2>
-      <p>{contact.message.length > 150 ? contact.message.substring(0, 150) + "..." : contact.message}</p>
+      <p>{contact.message}</p>
       <a href={`/contact/${contact.id}`}>Read more →</a>
     </article>
   )

@@ -9,8 +9,6 @@ export default function Login () {
   const [status, setStatus] = useState<string>("")
   const navigate = useNavigate()
 
-
-
   async function handleLogin(e: React.FormEvent){
     e.preventDefault()
     try {
@@ -24,15 +22,21 @@ export default function Login () {
   }
 
   return (
-    <form onSubmit={handleLogin}>
-      <label htmlFor="email">Email:</label>
-      <input type="email" id="email" autoComplete="email" value={email} onChange={(e)=> setEmail(e.target.value)} required/>
-      <label htmlFor="password">Password:</label>
-      <input type="password" id="password" autoComplete="current-password" value={password} onChange={(e)=> setPassword(e.target.value)} required/>
-      <button type="submit">login!</button>
-      <div id="status-container">
-        <output role="status" id="status-message">{status}</output>
-      </div>
-    </form>
+    <div className="page">
+      <form className="auth-form" onSubmit={handleLogin}>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" autoComplete="email" value={email} onChange={(e)=> setEmail(e.target.value)} required/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input type="password" id="password" autoComplete="current-password" value={password} onChange={(e)=> setPassword(e.target.value)} required/>
+        </div>
+        <button type="submit">login</button>
+        <div id="status-container">
+          <output role="status" id="status-message">{status}</output>
+        </div>
+      </form>
+    </div>
   )
 }

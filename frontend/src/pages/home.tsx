@@ -22,23 +22,21 @@ export default function Home () {
         console.error(error)
       } finally {
         setLoadingPosts(false)
-      } 
+      }
     };
     fetchData()
   }, [page]);
 
-  if (loadingPosts) return (<p>Loading posts...</p>)
+  if (loadingPosts) return <p className="loading">Loading posts...</p>
 
   return (
-    <>
-    <div>
-      <ul>
+    <div className="page">
+      <ul className="posts-list">
         {posts.map(post => (
           <PostCard key={post.id} post={post} />
         ))}
       </ul>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage}></Pagination>
     </div>
-    </>
   )
 }

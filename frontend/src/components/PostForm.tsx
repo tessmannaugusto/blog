@@ -23,11 +23,15 @@ export default function PostForm () {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Title:</label>
-      <input type="text" value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
-      <label htmlFor="content">Content:</label>
-      <input type="text" value={content} onChange={(e)=>{setContent(e.target.value)}}/>
+    <form className="post-form" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="title">Title</label>
+        <input type="text" id="title" value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
+      </div>
+      <div className="form-group">
+        <label htmlFor="content">Content</label>
+        <textarea id="content" value={content} onChange={(e)=>{setContent(e.target.value)}} rows={6}/>
+      </div>
       <button type="submit">create post</button>
       <div id="status-container">
         <output role="status" id="status-message">{status}</output>

@@ -9,13 +9,15 @@ interface PostCardProps {
 
 export function PostCard ({post, showActions = false, onDelete}: PostCardProps) {
   return (
-    <article>
-      <time>{new Date(post.createdAt).toLocaleDateString('pt-BR')}</time>
-      <h2>{post.title}</h2>
-      <p>{post.content.length > 150 ? post.content.substring(0, 150) + "..." : post.content}</p>
-      <Link to={`/posts/${post.slug}`}>Read more</Link>
+    <article className="post-card">
+      <time className="post-card-meta">{new Date(post.createdAt).toLocaleDateString('pt-BR')}</time>
+      <h2 className="post-card-title">{post.title}</h2>
+      <p className="post-card-excerpt">{post.content}</p>
+      <Link className="post-card-read-more" to={`/posts/${post.slug}`}>Read more</Link>
       {showActions && onDelete && (
-        <button onClick={() => onDelete(post.id)}>delete</button>
+        <span className="post-card-actions">
+          <button className="btn-danger" onClick={() => onDelete(post.id)}>delete</button>
+        </span>
       )}
     </article>
   )

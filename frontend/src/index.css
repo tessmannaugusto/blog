@@ -1,0 +1,420 @@
+/* ─── Variables ─────────────────────────────────────────────── */
+:root {
+  --bg: #f5f4ef;
+  --text: #2a2d1e;
+  --text-muted: #7a8a72;
+  --border: #dddcd4;
+  --max-width: 680px;
+  --nav-height: 52px;
+  --font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --radius: 4px;
+  --t: 0.2s ease;
+}
+
+/* ─── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Fade-in animation ─────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page {
+  animation: fadeIn 0.3s ease both;
+}
+
+/* ─── Layout container ──────────────────────────────────────── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* ─── Nav ───────────────────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.75rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  transition: color var(--t);
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+/* ─── Global link ───────────────────────────────────────────── */
+a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border);
+  transition: text-decoration-color var(--t), opacity var(--t);
+}
+
+a:hover {
+  text-decoration-color: var(--text);
+}
+
+/* ─── Typography ────────────────────────────────────────────── */
+h1 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+time {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* ─── Post list ─────────────────────────────────────────────── */
+.posts-list {
+  list-style: none;
+}
+
+/* ─── Post card ─────────────────────────────────────────────── */
+.post-card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-card:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.post-card-meta {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.post-card-title {
+  margin-bottom: 0.35rem;
+}
+
+.post-card-excerpt {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 0.85rem;
+
+  /* 2 lines max */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-card-read-more {
+  font-size: 0.82rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: color var(--t), border-color var(--t);
+}
+
+.post-card-read-more:hover {
+  color: var(--text);
+  border-color: var(--text);
+  opacity: 1;
+}
+
+.post-card-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: 1rem;
+}
+
+/* ─── Post page ─────────────────────────────────────────────── */
+.post-page h1 {
+  margin-bottom: 0.5rem;
+}
+
+.post-page time {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.post-page p {
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+/* ─── Contact card ──────────────────────────────────────────── */
+.contact-card {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-card:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.contact-card h2 {
+  font-size: 0.92rem;
+  margin-bottom: 0.25rem;
+}
+
+.contact-card p {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.contact-card a {
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: color var(--t);
+}
+
+.contact-card a:hover {
+  color: var(--text);
+}
+
+/* ─── Form shared ───────────────────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.85rem;
+  font-size: 0.95rem;
+  font-family: var(--font);
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--t), box-shadow var(--t);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--text);
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.07);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 140px;
+  line-height: 1.6;
+}
+
+/* ─── Buttons ───────────────────────────────────────────────── */
+button {
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 0.55rem 1.25rem;
+  font-size: 0.875rem;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: opacity var(--t);
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.72;
+}
+
+button:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+  transition: color var(--t), border-color var(--t);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--text);
+  opacity: 1;
+}
+
+.btn-danger {
+  background: transparent;
+  color: #b91c1c;
+  border-color: #fca5a5;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.75rem;
+  transition: background var(--t), color var(--t), border-color var(--t);
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+  color: #fff;
+  border-color: #b91c1c;
+  opacity: 1;
+}
+
+/* ─── Status / output ───────────────────────────────────────── */
+#status-container {
+  min-height: 1.4rem;
+  margin-top: 0.75rem;
+}
+
+#status-message {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ─── Pagination ────────────────────────────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pagination span {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.pagination button {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.82rem;
+  transition: color var(--t), border-color var(--t);
+}
+
+.pagination button:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--text);
+  opacity: 1;
+}
+
+/* ─── Loading / empty states ────────────────────────────────── */
+.loading,
+.state-message {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 1.5rem 0;
+}
+
+/* ─── Auth (login) ──────────────────────────────────────────── */
+.auth-form {
+  max-width: 360px;
+  margin: 3rem auto 0;
+}
+
+/* ─── Contact form page ─────────────────────────────────────── */
+.contact-page-header {
+  margin-bottom: 2rem;
+}
+
+.contact-page-header h1 {
+  margin-bottom: 0.35rem;
+}
+
+.contact-page-header p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* ─── Admin page ────────────────────────────────────────────── */
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.admin-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-section-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── Post form (inside admin) ──────────────────────────────── */
+.post-form {
+  display: flex;
+  flex-direction: column;
+}

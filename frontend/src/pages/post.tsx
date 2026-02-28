@@ -7,27 +7,27 @@ export default function Post () {
   const { slug } = useParams();
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
+
   useEffect(()=> {
     const loadPost = async () => {
       try {
-      const data = await fetchPostBySlug(slug!);
-      setPost(data)
+        const data = await fetchPostBySlug(slug!);
+        setPost(data)
       } catch (error) {
         console.log(error)
         console.error("Error when fetching post.")
       } finally {
         setLoading(false)
       }
-
     };
     loadPost()
   }, [slug])
 
-  if (loading) return <div>Carregando...</div>
-  if (!post) return <div>Post not found.</div>
+  if (loading) return <p className="loading">Loading...</p>
+  if (!post) return <p className="state-message">Post not found.</p>
 
   return (
-    <article>
+    <article className="page post-page">
       <h1>{post.title}</h1>
       <time>{new Date(post.createdAt).toLocaleDateString('pt-BR')}</time>
       <p>{post.content}</p>

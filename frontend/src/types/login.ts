@@ -6,3 +6,7 @@ export interface LoginData {
 export interface LoginResponse {
   token: string
 }
+
+export interface VerifyResponse {
+  valid: boolean
+}

@@ -25,7 +25,7 @@ export default function Admin () {
       console.log("Error when deleting post.", error)
     }
   }
-  
+
   useEffect(()=>{
     const fetchData = async () => {
       try {
@@ -40,6 +40,7 @@ export default function Admin () {
     };
     fetchData()
   }, [pagePosts])
+
   useEffect(()=>{
     const fetchData = async () => {
       try {
@@ -54,35 +55,47 @@ export default function Admin () {
     };
     fetchData()
   }, [pageContacts])
+
   return (
-    <div>
-      <PostForm/>
-      <div>
-        <h2>Post list:</h2>
-        {loadingPosts ? (<p>Loading posts...</p>) : (
+    <div className="page admin-page">
+
+      <section className="admin-section">
+        <h2 className="admin-section-title">New post</h2>
+        <PostForm/>
+      </section>
+
+      <section className="admin-section">
+        <h2 className="admin-section-title">Posts</h2>
+        {loadingPosts ? (
+          <p className="loading">Loading posts...</p>
+        ) : (
           <>
-            <ul>
-              {posts.map(post=> (
+            <ul className="posts-list">
+              {posts.map(post => (
                 <PostCard key={post.id} post={post} showActions={true} onDelete={handleDelete}/>
               ))}
             </ul>
-            <Pagination currentPage={pagePosts} totalPages={totalPagesPosts} onPageChange={setPagePosts}></Pagination>
+            <Pagination currentPage={pagePosts} totalPages={totalPagesPosts} onPageChange={setPagePosts}/>
           </>
         )}
-      </div>
-      <div>
-        <h2>Messages received:</h2>
-        { loadingContacts ? (<p>Loading contacts...</p>): (
+      </section>
+
+      <section className="admin-section">
+        <h2 className="admin-section-title">Messages</h2>
+        {loadingContacts ? (
+          <p className="loading">Loading messages...</p>
+        ) : (
           <>
-            <ul>
-            {contacts.map(contact=> (
-              <ContactCard key={contact.id} contact={contact}/>
-            ))}
-          </ul>
-          <Pagination currentPage={pageContacts} totalPages={totalPagesContacts} onPageChange={setPageContacts}></Pagination>
+            <ul className="posts-list">
+              {contacts.map(contact => (
+                <ContactCard key={contact.id} contact={contact}/>
+              ))}
+            </ul>
+            <Pagination currentPage={pageContacts} totalPages={totalPagesContacts} onPageChange={setPageContacts}/>
           </>
         )}
-      </div>
+      </section>
+
     </div>
   )
 }

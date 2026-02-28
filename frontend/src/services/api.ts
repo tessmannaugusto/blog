@@ -1,5 +1,5 @@
 import type { Contact, CreateContact, FetchContactsResponse } from "../types/contact";
-import type { LoginData, LoginResponse } from "../types/login";
+import type { LoginData, LoginResponse, VerifyResponse } from "../types/login";
 import type { CreatePost, FetchPostsResponse, Post } from "../types/post";
 
 const URL = "http://localhost:3000"
@@ -71,6 +71,17 @@ async function login(loginData: LoginData): Promise<LoginResponse> {
   return response.json();
 }
 
+async function verifyToken(token: string): Promise<VerifyResponse> {
+  const response = await fetch(`${URL}/auth/verify`, {
+    method: "GET",
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  if (!response.ok) throw new Error('Invalid token.')
+  return response.json();
+}
+
 async function fetchContacts(page: number = 1, limit: number = 5): Promise<FetchContactsResponse> {
   const response = await fetch(`${URL}/contacts?page=${page}&limit=${limit}`, {
     method: "GET",
@@ -81,13 +92,15 @@ async function fetchContacts(page: number = 1, limit: number = 5): Promise<Fetch
 }
 
 async function fetchContact(id: number): Promise<Contact> {
-  const response = await fetch(`${URL}/contacts/${id}`)
+  const response = await fetch(`${URL}/contacts/${id}`, {
+    headers: getAuthHeaders()
+  })
   if(!response.ok) throw new Error('Error when getting contact.')
   return response.json()
 }
 
 async function createContact (contact: CreateContact): Promise<CreateEditDeleteResponse> {
-  const response = await fetch(`${URL}/contact`, {
+  const response = await fetch(`${URL}/contacts`, {
     method: "POST",
     headers: { "Content-type": "application/json"},
     body: JSON.stringify(contact)
@@ -96,4 +109,4 @@ async function createContact (contact: CreateContact): Promise<CreateEditDeleteR
     return response.json()
 }
 
-export { fetchPosts, fetchPostBySlug, createPost, updatePost, deletePost, login, fetchContacts, createContact, fetchContact }
+export { fetchPosts, fetchPostBySlug, createPost, updatePost, deletePost, login, fetchContacts, createContact, fetchContact, verifyToken }
