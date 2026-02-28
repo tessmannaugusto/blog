@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { getAllContacts, createContact, getContact } from "../services/contact.js";
+import { Prisma } from "../../generated/prisma/client.js";
 
 async function getAll(req: Request, res: Response) {
   try {
     const page = parseInt(req.query.page as string) || 1
-    const limit = parseInt(req.query.limit as string) || 5
+    const limit = Math.min(parseInt(req.query.limit as string) || 5, 50)
     const contactsData = await getAllContacts(page, limit);
     return res.status(200).json(contactsData);
   } catch (error) {
@@ -18,6 +19,11 @@ async function create(req: Request, res: Response) {
     await createContact(req.body);
     return res.status(201).json({ message: "contact created!" });
   } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        return res.status(409).json({ message: "A message from this email already exists." })
+      }
+    }
     console.error(error)
     return res.status(500).json({ message: "could not create contact." })
   }
@@ -25,7 +31,6 @@ async function create(req: Request, res: Response) {
 
 async function getOne(req: Request, res: Response) {
   try {
-    console.log("entenred getOne Contact route")
     const id = parseInt(req.params.id as string) || 1
     const contact = await getContact(id);
     if (!contact) {
@@ -33,7 +38,6 @@ async function getOne(req: Request, res: Response) {
     }
     return res.status(200).json(contact)
   } catch (error) {
-    console.log(error);
     return res.status(500).json("could not find contact.")
   }
 }

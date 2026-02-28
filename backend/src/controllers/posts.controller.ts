@@ -5,7 +5,7 @@ import { Prisma } from "../../generated/prisma/client.js";
 async function getAll(req: Request, res: Response) {
   try {
     const page = parseInt(req.query.page as string) || 1
-    const limit = parseInt(req.query.limit as string) || 5
+    const limit = Math.min(parseInt(req.query.limit as string) || 5, 50)
     const postData = await getAllPosts(page, limit);
     return res.status(200).json(postData);
   } catch (error) {
@@ -18,17 +18,14 @@ async function getOneBySlug(req: Request, res: Response) {
   try {
     const slug = req.params.slug as string
     const post = await getPostBySlug(slug);
-    console.log('post', post)
     return res.status(200).json(post)
   } catch (error) {
-    console.log(error);
     return res.status(404).json("post not found.")
   }
 }
 
 async function create(req: Request, res: Response) {
   try {
-    console.info("create post route")
     await createPost(req.body);
     return res.status(201).json({ message: "post created!" });
   } catch (error) {
@@ -45,7 +42,6 @@ async function create(req: Request, res: Response) {
 }
 
 async function edit(req: Request, res: Response) {
-  console.log("edit post route")
   try {
     await editPost(req.body);
     return res.status(200).json({ message: "post updated." })

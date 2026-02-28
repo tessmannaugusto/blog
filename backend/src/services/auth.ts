@@ -9,7 +9,6 @@ export async function authLogin(contact: LoginInput) {
   }
   const validPassword = await bcrypt.compare(contact.password, process.env.ADMIN_PASSWORD_HASH!);
   if (!validPassword) {
-    console.error('invalid password')
     throw new Error("Invalid credentials.")
   }
   const token = jwt.sign(

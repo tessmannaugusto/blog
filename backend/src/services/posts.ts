@@ -4,7 +4,6 @@ import { CreatePostInput, Post } from '../schemas/post.schema.js';
 
 
 async function getAllPosts(page: number, limit: number) {
-  console.info("getting all posts from db...")
   const skip = (page - 1) * limit;
 
   const [posts, total] = await Promise.all([
@@ -44,7 +43,6 @@ async function deletePost(id: number) {
 }
 
 async function getPostBySlug(slug: string) {
-  console.log('slug', slug)
   return prisma.post.findUnique({
     where: {slug}
   })
