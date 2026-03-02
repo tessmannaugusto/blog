@@ -5,7 +5,7 @@ import Nav from './components/Nav'
 import CreateContact from './pages/createContact'
 import Login from './pages/login'
 import Admin from './pages/admin'
-import Post from './pages/post'
+import PostDetail from './pages/postDetail'
 import ContactDetail from './pages/contactDetail'
 import ProtectedRoute from './components/ProtectedRoute'
 
@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/posts' element={<Home/>}/>
-          <Route path='/posts/:slug' element={<Post/>}/>
+          <Route path='/posts/:slug' element={<PostDetail/>}/>
           <Route path='/contact' element={<CreateContact/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/admin' element={<ProtectedRoute children={<Admin/>}></ProtectedRoute>}/>

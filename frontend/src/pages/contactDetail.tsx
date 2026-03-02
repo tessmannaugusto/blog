@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchContact } from "../services/api";
 import type { Contact } from "../types/contact";
 
@@ -28,6 +28,7 @@ export default function ContactDetail () {
 
   return (
     <article className="page post-page">
+      <Link className="contact return-button" to={`/admin`}>back</Link>
       <h1>Message from {contact.name}</h1>
       <time>{new Date(contact.createdAt).toLocaleDateString('pt-BR')}</time>
       <p><strong>Email:</strong> {contact.email}</p>

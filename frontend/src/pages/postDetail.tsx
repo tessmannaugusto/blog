@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchPostBySlug } from "../services/api";
 import type { Post } from "../types/post";
 
-export default function Post () {
+export default function PostDetail () {
   const { slug } = useParams();
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -28,6 +28,7 @@ export default function Post () {
 
   return (
     <article className="page post-page">
+      <Link className="post return-button" to={`/posts`}>back</Link>
       <h1>{post.title}</h1>
       <time>{new Date(post.createdAt).toLocaleDateString('pt-BR')}</time>
       <p>{post.content}</p>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createContact } from "../services/api";
+import LinksFooter from "../components/LinksFooter";
 
 
 export default function CreateContact () {
@@ -62,6 +63,7 @@ export default function CreateContact () {
           <output role="status" id="status-message">{status}</output>
         </div>
       </form>
+      <LinksFooter></LinksFooter>
     </div>
   )
 }

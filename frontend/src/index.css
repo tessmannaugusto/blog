@@ -272,6 +272,16 @@ textarea {
 }
 
 /* ─── Buttons ───────────────────────────────────────────────── */
+.linkedin-icon {
+  color: black;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.linkedin-icon:hover {
+  opacity: 0.7;
+}
+
 button {
   background: var(--text);
   color: var(--bg);
