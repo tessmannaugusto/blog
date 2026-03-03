@@ -2,7 +2,7 @@ import type { Contact, CreateContact, FetchContactsResponse } from "../types/con
 import type { LoginData, LoginResponse, VerifyResponse } from "../types/login";
 import type { CreatePost, FetchPostsResponse, Post } from "../types/post";
 
-const URL = "http://localhost:3000"
+const URL = import.meta.env.VITE_BACKEND_URL;
 
 type CreateEditDeleteResponse = {
   message: string
