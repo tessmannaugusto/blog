@@ -3,6 +3,7 @@ import { fetchPosts } from "../services/api"
 import type { Post } from "../types/post";
 import { PostCard } from "../components/PostCard";
 import Pagination from "../components/Pagination";
+import LinksFooter from "../components/LinksFooter";
 
 
 export default function Home () {
@@ -37,6 +38,7 @@ export default function Home () {
         ))}
       </ul>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage}></Pagination>
+      <LinksFooter></LinksFooter>
     </div>
   )
 }

@@ -350,6 +350,7 @@ button:disabled {
   justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .pagination span {
@@ -427,4 +428,36 @@ button:disabled {
 .post-form {
   display: flex;
   flex-direction: column;
+}
+
+/* ─── Links footer ──────────────────────────────────────────── */
+.links-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.links-footer-list {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.links-footer-list button {
+  background: transparent;
+  color: var(--text);
+  border: none;
+  padding: 0;
+  font-size: 0.82rem;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: opacity var(--t);
+  display: flex;
+  align-items: center;
+}
+
+.links-footer-list button:hover:not(:disabled) {
+  opacity: 0.55;
 }

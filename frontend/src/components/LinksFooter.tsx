@@ -10,9 +10,9 @@ export default function LinksFooter () {
   }
 
   return (
-    <footer>
+    <footer className="links-footer">
       <nav>
-        <ul>
+        <ul className="links-footer-list">
           <li>
             <a
               href="https://www.linkedin.com/in/augusto-tessmann-yunes-b0097a96/"
