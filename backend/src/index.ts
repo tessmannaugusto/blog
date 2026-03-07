@@ -8,8 +8,9 @@ import authRoute from "./routes/auth.js"
 dotenv.config();
 
 const PORT = parseInt(process.env.PORT || "3000")
+console.log("iniciando servidor...")
 const app = express();
-
+console.log("criando rotas...")
 app.use(cors());
 app.use(express.json());
 app.use('/posts', postsRoute);
