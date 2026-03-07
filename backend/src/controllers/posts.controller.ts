@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getAllPosts, createPost, deletePost, editPost, getPostBySlug } from "../services/posts.js";
-import { Prisma } from "../../generated/prisma/client.js";
+import { Prisma } from "../generated/prisma/client.js";
 
 async function getAll(req: Request, res: Response) {
   try {

@@ -1,6 +1,4 @@
 import { Request, Response } from "express";
-import { getAllContacts, createContact } from "../services/contact.js";
-import { LoginInput } from "../schemas/auth.schema.js";
 import { authLogin } from "../services/auth.js";
 
 
