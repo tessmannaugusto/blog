@@ -7,6 +7,8 @@ import authRoute from "./routes/auth.js"
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3000
+
 const app = express();
 
 app.use(cors());
@@ -15,6 +17,9 @@ app.use('/posts', postsRoute);
 app.use('/contacts', contactRoute);
 app.use('/auth', authRoute);
 
-app.listen(process.env.PORT, () => {
-  console.info(`server running on port: ${process.env.PORT}`)
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Server running on port ${PORT}`)
+}).on('error', (err) => {
+  console.error('❌ Server error:', err)
+  process.exit(1)
 })
