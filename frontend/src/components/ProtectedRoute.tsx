@@ -8,7 +8,7 @@ type ProtectedRouteProps = {
 
 export default function ProtectedRoute ({children}: ProtectedRouteProps) {
   const [isValid, setIsValid] = useState<boolean | null>(null);
-  const token = localStorage.getItem('blog_token');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     if (!token) {

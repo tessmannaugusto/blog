@@ -2,11 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Nav () {
   useLocation();
-  const token = localStorage.getItem('blog_token');
+  const token = localStorage.getItem('token');
   const isAuthenticated = !!token
 
   function handleLogout () {
-    localStorage.removeItem('blog_token');
+    localStorage.removeItem('token');
     window.location.href = '/'
   }
 

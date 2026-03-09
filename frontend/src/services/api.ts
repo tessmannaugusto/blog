@@ -10,7 +10,7 @@ type CreateEditDeleteResponse = {
 
 
 function getAuthHeaders() {
-  const token = localStorage.getItem('blog_token');
+  const token = localStorage.getItem('token');
   return {
     'Content-type': 'application/json',
     ... (token && { 'Authorization': `Bearer ${token}` })
@@ -67,7 +67,9 @@ async function login(loginData: LoginData): Promise<LoginResponse> {
     },
     body: JSON.stringify(loginData)
   });
-  if (!response.ok) throw new Error('Invalid credentials.')
+  if (response.status === 429) throw new Error('Too many requests, try again later.');
+  if (response.status === 401) throw new Error('Invalid credentials.');
+  if (!response.ok) throw new Error('Error when logging in.')
   return response.json();
 }
 

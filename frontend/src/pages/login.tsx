@@ -13,11 +13,12 @@ export default function Login () {
     e.preventDefault()
     try {
       const { token } = await login({email, password})
-      localStorage.setItem('blog_token', token)
+      localStorage.setItem('token', token)
       navigate('/admin')
     } catch (error) {
+      const message = error instanceof Error ? error.message : "Error when logging in."
       console.error(error)
-      setStatus("Invalid credentials.")
+      setStatus(message)
     }
   }
 
