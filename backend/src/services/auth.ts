@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken'
 
 export async function authLogin(contact: LoginInput) {
   if (contact.email !== process.env.ADMIN_EMAIL) {
-    console.error('invalid email')
     throw new Error("Invalid credentials.")
   }
   const validPassword = await bcrypt.compare(contact.password, process.env.ADMIN_PASSWORD_HASH!);

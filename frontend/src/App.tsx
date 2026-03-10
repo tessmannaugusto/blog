@@ -23,7 +23,7 @@ function App() {
           <Route path='/contact' element={<CreateContact/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/admin' element={<ProtectedRoute children={<Admin/>}></ProtectedRoute>}/>
-          <Route path='/contact/:id' element={<ProtectedRoute children={<ContactDetail/>}></ProtectedRoute>}/>
+          <Route path='/admin/contact/:id' element={<ProtectedRoute children={<ContactDetail/>}></ProtectedRoute>}/>
         </Routes>
         </main>
       </BrowserRouter>

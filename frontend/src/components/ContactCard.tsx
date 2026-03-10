@@ -10,7 +10,7 @@ export function ContactCard ({contact}: ContactCardProps) {
       <time>{new Date(contact.createdAt).toLocaleDateString('pt-BR')}</time>
       <h2>Message sent by: {contact.name}</h2>
       <p>{contact.message}</p>
-      <a href={`/contact/${contact.id}`}>Read more →</a>
+      <a href={`/admin/contact/${contact.id}`}>Read more →</a>
     </article>
   )
 }

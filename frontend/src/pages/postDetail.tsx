@@ -15,7 +15,6 @@ export default function PostDetail () {
         setPost(data)
       } catch (error) {
         console.log(error)
-        console.error("Error when fetching post.")
       } finally {
         setLoading(false)
       }

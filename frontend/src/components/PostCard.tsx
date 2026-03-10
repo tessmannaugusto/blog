@@ -4,7 +4,8 @@ import type { Post } from "../types/post";
 interface PostCardProps {
   post: Post,
   showActions?: boolean,
-  onDelete?: (id: number) => void
+  onDelete?: (id: number) => void,
+  onEdit?: (id: number) => void
 }
 
 export function PostCard ({post, showActions = false, onDelete}: PostCardProps) {
@@ -17,6 +18,7 @@ export function PostCard ({post, showActions = false, onDelete}: PostCardProps) 
       {showActions && onDelete && (
         <span className="post-card-actions">
           <button className="btn-danger" onClick={() => onDelete(post.id)}>delete</button>
+          <Link to={`/admin/posts/${post.slug}`} className="btn-danger">edit</Link>
         </span>
       )}
     </article>
