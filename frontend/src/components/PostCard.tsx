@@ -18,7 +18,7 @@ export function PostCard ({post, showActions = false, onDelete}: PostCardProps) 
       {showActions && onDelete && (
         <span className="post-card-actions">
           <button className="btn-danger" onClick={() => onDelete(post.id)}>delete</button>
-          <Link to={`/admin/posts/${post.slug}`} className="btn-danger">edit</Link>
+          <Link to={`/admin/posts/edit/${post.slug}`} className="btn-danger">edit</Link>
         </span>
       )}
     </article>

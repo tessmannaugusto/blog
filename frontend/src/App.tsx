@@ -8,6 +8,7 @@ import Admin from './pages/admin'
 import PostDetail from './pages/postDetail'
 import ContactDetail from './pages/contactDetail'
 import ProtectedRoute from './components/ProtectedRoute'
+import PostEdit from './pages/postEdit'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/admin' element={<ProtectedRoute children={<Admin/>}></ProtectedRoute>}/>
           <Route path='/admin/contact/:id' element={<ProtectedRoute children={<ContactDetail/>}></ProtectedRoute>}/>
+          <Route path='/admin/posts/edit/:slug' element={<ProtectedRoute children={<PostEdit/>}></ProtectedRoute>}/>
         </Routes>
         </main>
       </BrowserRouter>
