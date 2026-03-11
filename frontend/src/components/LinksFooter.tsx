@@ -11,7 +11,7 @@ export default function LinksFooter () {
 
   return (
     <footer className="links-footer">
-      <nav>
+      <nav aria-label="Social links">
         <ul className="links-footer-list">
           <li>
             <a
@@ -19,7 +19,8 @@ export default function LinksFooter () {
               target="_blank"
               rel="noopener noreferrer"
               className="linkedin-icon"
-            ><FaLinkedin size={40} />
+              aria-label="LinkedIn profile (opens in new tab)"
+            ><FaLinkedin size={40} aria-hidden="true" />
             </a>
           </li>
           <li>
@@ -28,12 +29,13 @@ export default function LinksFooter () {
               target="_blank"
               rel="noopener noreferrer"
               className="linkedin-icon"
-            ><FaGithub size={40} />
+              aria-label="GitHub profile (opens in new tab)"
+            ><FaGithub size={40} aria-hidden="true" />
             </a>
           </li>
           <li>
-            <button onClick={handleCopyEmail}>
-              {copied ? "copiado!": <FaEnvelope size={40} />}
+            <button onClick={handleCopyEmail} aria-label={copied ? "Email copied!" : "Copy email address"}>
+              {copied ? "email copied!" : <FaEnvelope size={40} aria-hidden="true" />}
             </button>
           </li>
         </ul>

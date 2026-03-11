@@ -32,6 +32,36 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ─── Skip link ─────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 0;
+  background: var(--text);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  z-index: 200;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ─── Visually hidden ───────────────────────────────────────── */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ─── Fade-in animation ─────────────────────────────────────── */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -40,6 +70,18 @@ body {
 
 .page {
   animation: fadeIn 0.3s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* ─── Layout container ──────────────────────────────────────── */
@@ -301,6 +343,11 @@ button:hover:not(:disabled) {
 button:disabled {
   opacity: 0.28;
   cursor: not-allowed;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 
 .btn-ghost {

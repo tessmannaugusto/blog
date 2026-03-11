@@ -47,11 +47,12 @@ export default function PostEdit() {
     <form className="post-form" onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="title">Title</label>
-        <input 
-          type="text" 
-          id="title" 
+        <input
+          type="text"
+          id="title"
           value={post.title}
           onChange={(e) => handleChange('title', e.target.value)}
+          required
         />
       </div>
 
@@ -67,11 +68,12 @@ export default function PostEdit() {
 
       <div className="form-group">
         <label htmlFor="content">Content</label>
-        <textarea 
-          id="content" 
+        <textarea
+          id="content"
           value={post.content}
           onChange={(e) => handleChange('content', e.target.value)}
           rows={6}
+          required
         />
       </div>
 

@@ -72,7 +72,9 @@ export default function Admin () {
           <>
             <ul className="posts-list">
               {posts.map(post => (
-                <PostCard key={post.id} post={post} showActions={true} onDelete={handleDelete}/>
+                <li key={post.id}>
+                  <PostCard post={post} showActions={true} onDelete={handleDelete}/>
+                </li>
               ))}
             </ul>
             <Pagination currentPage={pagePosts} totalPages={totalPagesPosts} onPageChange={setPagePosts}/>
@@ -88,7 +90,9 @@ export default function Admin () {
           <>
             <ul className="posts-list">
               {contacts.map(contact => (
-                <ContactCard key={contact.id} contact={contact}/>
+                <li key={contact.id}>
+                  <ContactCard contact={contact}/>
+                </li>
               ))}
             </ul>
             <Pagination currentPage={pageContacts} totalPages={totalPagesContacts} onPageChange={setPageContacts}/>

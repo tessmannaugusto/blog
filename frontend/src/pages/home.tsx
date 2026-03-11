@@ -34,7 +34,9 @@ export default function Home () {
     <div className="page">
       <ul className="posts-list">
         {posts.map(post => (
-          <PostCard key={post.id} post={post} />
+          <li key={post.id}>
+            <PostCard post={post} />
+          </li>
         ))}
       </ul>
       <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage}></Pagination>

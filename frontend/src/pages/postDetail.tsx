@@ -29,7 +29,7 @@ export default function PostDetail () {
     <article className="page post-page">
       <Link className="post return-button" to={`/posts`}>back</Link>
       <h1>{post.title}</h1>
-      <time>{new Date(post.createdAt).toLocaleDateString('pt-BR')}</time>
+      <time dateTime={new Date(post.createdAt).toISOString()}>{new Date(post.createdAt).toLocaleDateString('pt-BR')}</time>
       <p>{post.content}</p>
     </article>
   )

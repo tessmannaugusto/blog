@@ -14,9 +14,9 @@ export default function CreateContact () {
     const contact = { name, message, email }
     try {
       await createContact(contact);
-      setStatus("Mensagem enviada com sucesso!")
+      setStatus("Message sent!")
     } catch (error) {
-      setStatus("Erro ao enviar mensagem.")
+      setStatus("Error when sending message.")
       console.error(error)
     }
   }
@@ -29,7 +29,7 @@ export default function CreateContact () {
       </header>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Nome</label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
@@ -49,7 +49,7 @@ export default function CreateContact () {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="message">Mensagem</label>
+          <label htmlFor="message">Message</label>
           <textarea
             id="message"
             value={message}
@@ -58,7 +58,7 @@ export default function CreateContact () {
             required
           />
         </div>
-        <button type="submit">Enviar</button>
+        <button type="submit">Send</button>
         <div id="status-container">
           <output role="status" id="status-message">{status}</output>
         </div>

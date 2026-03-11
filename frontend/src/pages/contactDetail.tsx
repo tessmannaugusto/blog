@@ -30,7 +30,7 @@ export default function ContactDetail () {
     <article className="page post-page">
       <Link className="contact return-button" to={`/admin`}>back</Link>
       <h1>Message from {contact.name}</h1>
-      <time>{new Date(contact.createdAt).toLocaleDateString('pt-BR')}</time>
+      <time dateTime={new Date(contact.createdAt).toISOString()}>{new Date(contact.createdAt).toLocaleDateString('pt-BR')}</time>
       <p><strong>Email:</strong> {contact.email}</p>
       <p>{contact.message}</p>
     </article>
