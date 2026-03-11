@@ -15,7 +15,7 @@ export async function authLogin(contact: LoginInput) {
       email: contact.email, role: 'admin'
     },
     process.env.JWT_SECRET!,
-    { expiresIn: '7d' }
+    { expiresIn: '1h' }
   )
   return token
 }

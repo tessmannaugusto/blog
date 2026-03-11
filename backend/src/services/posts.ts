@@ -38,7 +38,7 @@ async function editPost(post: Post) {
   })
 }
 
-async function deletePost(id: number) {
+async function deletePost(id: string) {
   return prisma.post.delete({ where: { id: id } });
 }
 

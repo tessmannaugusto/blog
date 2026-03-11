@@ -31,7 +31,7 @@ async function create(req: Request, res: Response) {
 
 async function getOne(req: Request, res: Response) {
   try {
-    const id = parseInt(req.params.id as string) || 1
+    const id = req.params.id as string
     const contact = await getContact(id);
     if (!contact) {
       return res.status(404).json({message: "contact not found"})

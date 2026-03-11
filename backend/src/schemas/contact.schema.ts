@@ -7,7 +7,7 @@ export const createContactSchema = z.object({
 })
 
 export const getContactSchema = z.object({
-  id: z.string().regex(/^\d+$/).transform(Number)
+  id: z.uuid()
 })
 
 export type CreateContactInput = z.infer<typeof createContactSchema>

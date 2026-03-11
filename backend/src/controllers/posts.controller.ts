@@ -52,7 +52,7 @@ async function edit(req: Request, res: Response) {
 
 async function deleteOne(req: Request<{ id: string }>, res: Response) {
   try {
-    const id = parseInt(req.params.id)
+    const id = req.params.id
     await deletePost(id)
     return res.status(200).json({ message: `Deleted post: ${id}` })
   } catch (error) {

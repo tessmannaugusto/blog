@@ -4,16 +4,22 @@ import cors from "cors";
 import postsRoute from "./routes/posts.js"
 import contactRoute from "./routes/contact.js"
 import authRoute from "./routes/auth.js"
+import helmet from "helmet";
 
 dotenv.config();
 
-const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN
+const required = ['JWT_SECRET', 'ADMIN_EMAIL', 'ADMIN_PASSWORD_HASH', 'DATABASE_URL', 'PORT', 'FRONTEND_DOMAIN'];
+for (const key of required) {
+  if (!process.env[key]) throw new Error(`Missing required env var: ${key}`);
+}
 
+const FRONTEND_DOMAIN = process.env.FRONTEND_DOMAIN
 const PORT = parseInt(process.env.PORT || "3000")
 const app = express();
 app.use(cors({
   origin: FRONTEND_DOMAIN
 }));
+app.use(helmet())
 app.use(express.json());
 app.use('/posts', postsRoute);
 app.use('/contacts', contactRoute);

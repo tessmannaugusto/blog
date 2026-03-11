@@ -25,7 +25,7 @@ async function getAllContacts(page: number, limit: number) {
   }
 }
 
-async function getContact(id: number) {
+async function getContact(id: string) {
   return prisma.contact.findUnique({
     where: {id}
   })

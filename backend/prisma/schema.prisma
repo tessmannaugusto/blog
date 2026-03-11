@@ -8,14 +8,14 @@ datasource db {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   title     String   @unique
   content   String
   slug      String   @unique
   createdAt DateTime @default(now())
 }
 model Contact {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   name     String
   message   String
   email   String @unique
