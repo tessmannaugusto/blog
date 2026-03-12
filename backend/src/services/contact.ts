@@ -27,8 +27,14 @@ async function getAllContacts(page: number, limit: number) {
 
 async function getContact(id: string) {
   return prisma.contact.findUnique({
-    where: {id}
+    where: { id }
   })
 }
 
-export { createContact, getAllContacts, getContact}
+async function deleteContact(id: string) {
+  return prisma.contact.delete({
+    where: { id }
+  })
+}
+
+export { createContact, getAllContacts, getContact, deleteContact }

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllContacts, createContact, getContact } from "../services/contact.js";
+import { getAllContacts, createContact, getContact, deleteContact } from "../services/contact.js";
 import { Prisma } from "../generated/prisma/client.js";
 
 async function getAll(req: Request, res: Response) {
@@ -42,5 +42,16 @@ async function getOne(req: Request, res: Response) {
   }
 }
 
+async function deleteOne(req: Request<{ id: string }>, res: Response) {
+  try {
+    const id = req.params.id
+    await deleteContact(id)
+    return res.status(200).json({ message: `Deleted contact: ${id}` })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ message: "Error when deleting contact." })
+  }
+}
 
-export { getAll, create, getOne }
+
+export { getAll, create, getOne, deleteOne }
