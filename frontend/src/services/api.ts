@@ -49,7 +49,7 @@ async function updatePost(post: Post): Promise<CreateEditDeleteResponse> {
   return response.json();
 }
 
-async function deletePost(id: number):Promise<CreateEditDeleteResponse>{
+async function deletePost(id: string):Promise<CreateEditDeleteResponse>{
   const response = await fetch(`${URL}/posts/${id}`, {
     method: "DELETE",
     headers: getAuthHeaders()
@@ -93,11 +93,20 @@ async function fetchContacts(page: number = 1, limit: number = 5): Promise<Fetch
   return response.json()
 }
 
-async function fetchContact(id: number): Promise<Contact> {
+async function fetchContact(id: string): Promise<Contact> {
   const response = await fetch(`${URL}/contacts/${id}`, {
     headers: getAuthHeaders()
   })
   if(!response.ok) throw new Error('Error when getting contact.')
+  return response.json()
+}
+
+async function deleteContact(id: string):Promise<CreateEditDeleteResponse>{
+  const response = await fetch(`${URL}/contacts/${id}`, {
+    method: "DELETE",
+    headers: getAuthHeaders()
+  })
+  if(!response.ok) throw new Error('Error when deleting contact')
   return response.json()
 }
 
@@ -111,4 +120,4 @@ async function createContact (contact: CreateContact): Promise<CreateEditDeleteR
     return response.json()
 }
 
-export { fetchPosts, fetchPostBySlug, createPost, updatePost, deletePost, login, fetchContacts, createContact, fetchContact, verifyToken }
+export { fetchPosts, fetchPostBySlug, createPost, updatePost, deletePost, login, fetchContacts, createContact, fetchContact,deleteContact,  verifyToken }

@@ -11,11 +11,11 @@ export default function ContactDetail () {
   useEffect(()=> {
     const loadContact = async () => {
       try {
-        const data = await fetchContact(Number(id));
+        const data = await fetchContact(id!);
         setContact(data)
       } catch (error) {
         console.log(error)
-        console.error("Error when fetching contact.")
+        console.error("Error when fetching message.")
       } finally {
         setLoading(false)
       }
@@ -24,7 +24,7 @@ export default function ContactDetail () {
   }, [id])
 
   if (loading) return <p className="loading">Loading...</p>
-  if (!contact) return <p className="state-message">Contact not found.</p>
+  if (!contact) return <p className="state-message">Message not found.</p>
 
   return (
     <article className="page post-page">

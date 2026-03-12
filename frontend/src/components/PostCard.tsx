@@ -4,8 +4,7 @@ import type { Post } from "../types/post";
 interface PostCardProps {
   post: Post,
   showActions?: boolean,
-  onDelete?: (id: number) => void,
-  onEdit?: (id: number) => void
+  onDelete?: (id: string) => void,
 }
 
 export function PostCard ({post, showActions = false, onDelete}: PostCardProps) {

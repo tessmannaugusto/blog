@@ -39,7 +39,7 @@ export default function Home () {
           </li>
         ))}
       </ul>
-      <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage}></Pagination>
+      {totalPages && (<Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage}></Pagination>)}
       <LinksFooter></LinksFooter>
     </div>
   )
