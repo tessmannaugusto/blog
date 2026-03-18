@@ -8,7 +8,7 @@ export default function About() {
         
         <section>
           <p>
-            A where place I can store thoughts, knowledge, experiences and much more. 
+            A place where I can store thoughts, knowledge, experiences and much more. 
             Built as a simple web project to put it to production 
             and let it live on the web.
           </p>
