@@ -32,6 +32,7 @@ export default function Home () {
 
   return (
     <div className="page">
+      <h2 className="home-section-title">Posts</h2>
       <ul className="posts-list">
         {posts.map(post => (
           <li key={post.id}>
