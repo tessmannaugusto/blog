@@ -9,6 +9,8 @@ import PostDetail from './pages/postDetail'
 import ContactDetail from './pages/contactDetail'
 import ProtectedRoute from './components/ProtectedRoute'
 import PostEdit from './pages/postEdit'
+import About from './pages/about'
+import LinksFooter from './components/LinksFooter'
 
 function App() {
 
@@ -21,6 +23,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/posts' element={<Home/>}/>
+          <Route path='/about' element={<About/>}/>
           <Route path='/posts/:slug' element={<PostDetail/>}/>
           <Route path='/contact' element={<CreateContact/>}/>
           <Route path='/login' element={<Login/>}/>
@@ -29,6 +32,7 @@ function App() {
           <Route path='/admin/posts/edit/:slug' element={<ProtectedRoute children={<PostEdit/>}></ProtectedRoute>}/>
         </Routes>
         </main>
+        <LinksFooter></LinksFooter>
       </BrowserRouter>
     </>
   )

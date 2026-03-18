@@ -14,8 +14,12 @@ export default function Nav () {
     <nav className="nav" aria-label="Main">
       <ul className="nav-links">
         {!isAuthenticated ? (
-          <><li><Link to="/" aria-current={location.pathname === '/' || location.pathname === '/posts' ? 'page' : undefined}>home</Link></li>
-          <li><Link to="/contact" aria-current={location.pathname === '/contact' ? 'page' : undefined}>contact</Link></li></>
+          <>
+          <li><Link to="/" aria-current={location.pathname === '/' || location.pathname === '/posts' ? 'page' : undefined}>home</Link></li>
+          <li><Link to="/contact" aria-current={location.pathname === '/contact' ? 'page' : undefined}>contact</Link></li>
+          <li><Link to="/about" aria-current={location.pathname === '/about' ? 'page' : undefined}>about</Link></li>
+          
+          </>
         ) :
         (
           <><li><Link to="/" aria-current={location.pathname === '/' || location.pathname === '/posts' ? 'page' : undefined}>home</Link></li>
