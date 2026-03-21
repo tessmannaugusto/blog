@@ -27,7 +27,15 @@ async function getAllPosts(page: number, limit: number) {
 
 async function createPost(newPost: CreatePostInput) {
   return prisma.post.create({
-    data: newPost
+    data: {
+      ...newPost,
+      tags: {
+        connectOrCreate: newPost.tags.map(tag => ({
+          where: { name: tag },
+          create: { name: tag }
+      }))
+    }
+    }
   });
 }
 

@@ -12,8 +12,15 @@ model Post {
   title     String   @unique
   content   String
   slug      String   @unique
+  tags      Tag[]
   createdAt DateTime @default(now())
 }
+model Tag {
+  id    String @id @default(uuid())
+  name  String @unique
+  posts Post[]
+}
+
 model Contact {
   id        String   @id @default(uuid())
   name     String
