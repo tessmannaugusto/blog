@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { getAll, create, deleteOne, edit, getOneBySlug } from "../controllers/posts.controller.js";
 import { validate } from "../middleware/validate.js";
-import { createPostSchema, deletePostSchema, getPostBySlugSchema, postSchema } from "../schemas/post.schema.js";
+import { createPostSchema, deletePostSchema, getPostBySlugSchema, getPostsByTags, postSchema } from "../schemas/post.schema.js";
 import { authenticate } from "../middleware/authenticate.js";
 import limiterMinute from "../middleware/rateLimiter.js";
 

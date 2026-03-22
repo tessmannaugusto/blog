@@ -29,6 +29,10 @@ export const getPostsSchema = z.object({
   limit: z.string().regex(/^\d+$/).transform(Number)
 })
 
+export const getPostsByTags = z.object({
+  tags: z.string(),
+})
+
 export type Post = z.infer<typeof postSchema>
 export type CreatePostInput = z.infer<typeof createPostSchema>
 export type DeletePostInput = z.infer<typeof deletePostSchema>

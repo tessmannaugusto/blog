@@ -1,11 +1,18 @@
 import { Request, Response } from "express";
-import { getAllPosts, createPost, deletePost, editPost, getPostBySlug } from "../services/posts.js";
+import { getAllPosts, createPost, deletePost, editPost, getPostBySlug, getPostsByTags } from "../services/posts.js";
 import { Prisma } from "../generated/prisma/client.js";
 
 async function getAll(req: Request, res: Response) {
   try {
     const page = parseInt(req.query.page as string) || 1
     const limit = Math.min(parseInt(req.query.limit as string) || 5, 50)
+    const tags = req.query.tags as string;
+    const tagsArray = tags?.split(',');
+    if (tagsArray?.length > 0 ) {
+      const postData = await getPostsByTags(tagsArray!);
+      console.log(postData)
+      return res.status(200).json(postData);
+    }
     const postData = await getAllPosts(page, limit);
     return res.status(200).json(postData);
   } catch (error) {

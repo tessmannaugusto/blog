@@ -25,6 +25,18 @@ async function getAllPosts(page: number, limit: number) {
   }
 }
 
+async function getPostsByTags(tags: string[]) {
+  return prisma.post.findMany({
+    where: {
+      tags: {
+        some: {
+          name: { in: tags }
+        }
+      }
+    }
+  })
+}
+
 async function createPost(newPost: CreatePostInput) {
   const { tags, ...postData } = newPost;
   return prisma.post.create({
@@ -71,4 +83,4 @@ async function getPostBySlug(slug: string) {
   })
 }
 
-export { getAllPosts, createPost, deletePost, editPost, getPostBySlug }
+export { getAllPosts, createPost, deletePost, editPost, getPostBySlug, getPostsByTags }
