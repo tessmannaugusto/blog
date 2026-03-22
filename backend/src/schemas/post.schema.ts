@@ -5,6 +5,7 @@ export const postSchema = z.object({
   title: z.string().min(3).max(100),
   content: z.string().min(10).max(1000),
   slug: z.string().regex(/^[a-z0-9-]+$/),
+  tags: z.string().array().optional(),
   createdAt: z.string()
 })
 
@@ -12,7 +13,7 @@ export const createPostSchema = z.object({
   title: z.string().min(3).max(100),
   content: z.string().min(10).max(1000),
   slug: z.string().regex(/^[a-z0-9-]+$/),
-  tags: z.string().array()
+  tags: z.string().array().optional()
 })
 
 export const deletePostSchema = z.object({

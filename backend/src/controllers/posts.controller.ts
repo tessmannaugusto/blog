@@ -26,6 +26,7 @@ async function getOneBySlug(req: Request, res: Response) {
 
 async function create(req: Request, res: Response) {
   try {
+    console.log('req body:', req.body)
     await createPost(req.body);
     return res.status(201).json({ message: "post created!" });
   } catch (error) {

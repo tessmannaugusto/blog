@@ -26,23 +26,38 @@ async function getAllPosts(page: number, limit: number) {
 }
 
 async function createPost(newPost: CreatePostInput) {
+  const { tags, ...postData } = newPost;
   return prisma.post.create({
     data: {
-      ...newPost,
-      tags: {
-        connectOrCreate: newPost.tags.map(tag => ({
-          where: { name: tag },
-          create: { name: tag }
-      }))
-    }
+      ...postData,
+      ...(tags && {
+        tags: {
+          connectOrCreate: tags.map(tag => ({
+            where: { name: tag },
+            create: { name: tag }
+          }))
+        }
+      })
     }
   });
 }
 
 async function editPost(post: Post) {
+  const { tags, ...postData } = post;
   return prisma.post.update({
     where: { id: post.id },
-    data: post
+    data: {
+      ...postData,
+      ... (tags && {
+        tags: {
+          connectOrCreate: tags.map(tag => ({
+            where: { name: tag },
+            create: { name: tag }
+          }))
+        }
+      })
+
+    }
   })
 }
 
@@ -52,7 +67,7 @@ async function deletePost(id: string) {
 
 async function getPostBySlug(slug: string) {
   return prisma.post.findUnique({
-    where: {slug}
+    where: { slug }
   })
 }
 
